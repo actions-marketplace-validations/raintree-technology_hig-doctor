@@ -128,7 +128,7 @@ html {
   color: hsl(var(--primary-foreground));
   border-radius: 12px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .skip-link:focus {
@@ -275,7 +275,8 @@ body {
   transition: text-decoration-color 0.15s;
 }
 
-.prose-hig a:hover {
+.prose-hig a:hover,
+.prose-hig a:focus {
   text-decoration-color: hsl(var(--foreground));
 }
 
@@ -350,7 +351,7 @@ body {
 }
 
 .prose-hig th {
-  text-align: left;
+  text-align: start;
   font-weight: 600;
   color: hsl(var(--foreground));
   padding: 0.5rem 0.75rem;
@@ -421,7 +422,7 @@ body {
   a[href^="http"]::after {
     content: " (" attr(href) ")";
     font-size: 0.8em;
-    color: #666;
+    color: hsl(var(--muted-foreground));
   }
 
   a[href^="#"]::after,

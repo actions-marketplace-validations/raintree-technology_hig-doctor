@@ -1,296 +1,433 @@
 {
-  "generatedAt": "2026-02-20T04:10:58.033Z",
-  "baseline": {
-    "directory": "/Users/zach/Code/raintree/apple-hig-skills",
-    "skillCount": 14,
-    "summary": {
-      "errors": 0,
-      "warnings": 0,
-      "score": 100,
-      "label": "Great",
-      "passed": true
+  "generatedAt": "2026-02-24T20:21:47.805Z",
+  "project": {
+    "name": "apple-hig-skills",
+    "score": 100,
+    "lowDensity": false,
+    "frameworks": [
+      "nextjs"
+    ],
+    "files": {
+      "code": 55,
+      "style": 1,
+      "config": 10
     },
-    "todo": [
+    "totals": {
+      "concerns": 0,
+      "positives": 653,
+      "patterns": 101
+    },
+    "categories": [
       {
-        "id": "todo-1",
-        "priority": "low",
-        "severity": "info",
-        "ruleId": null,
-        "scope": "repo",
-        "occurrences": 0,
-        "files": [],
-        "task": "No fixes required",
-        "details": "Repository passed all hig-doctor checks.",
-        "doneWhen": "Run hig-doctor after your next content update.",
-        "verifyCommand": "node packages/hig-doctor/src/cli.js \"/Users/zach/Code/raintree/apple-hig-skills\" --score"
+        "name": "Foundations",
+        "skill": "hig-foundations",
+        "detections": 612,
+        "concerns": 0,
+        "positives": 595,
+        "patterns": 17,
+        "files": [
+          "website/app/layout.tsx",
+          "website/app/page.tsx",
+          "website/app/topics/page.tsx",
+          "website/app/topics/[slug]/page.tsx",
+          "website/components/UseCases.tsx",
+          "website/components/Hero.tsx",
+          "website/components/ui/card.tsx",
+          "website/components/ui/accordion.tsx",
+          "website/components/ui/badge.tsx",
+          "website/components/ui/table.tsx",
+          "website/components/ui/button.tsx",
+          "website/components/Install.tsx",
+          "website/components/Audience.tsx",
+          "website/components/HowItWorks.tsx",
+          "website/components/TopicCTA.tsx",
+          "website/components/TopicCopyButton.tsx",
+          "website/components/AgentSkills.tsx",
+          "website/components/Footer.tsx",
+          "website/components/MoreFromRaintree.tsx",
+          "website/components/Header.tsx",
+          "website/components/UpdateNotify.tsx",
+          "website/components/Skills.tsx",
+          "website/components/BeforeAfter.tsx",
+          "website/components/FAQ.tsx",
+          "website/components/EmailCTA.tsx",
+          "website/components/TopicSidebar.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts",
+          "demos/remotion-hig-doctor/src/HigDoctorShowcase.jsx",
+          "website/app/globals.css"
+        ]
+      },
+      {
+        "name": "Layout & Navigation",
+        "skill": "hig-components-layout",
+        "detections": 42,
+        "concerns": 0,
+        "positives": 11,
+        "patterns": 31,
+        "files": [
+          "website/app/page.tsx",
+          "website/app/topics/page.tsx",
+          "website/app/topics/[slug]/page.tsx",
+          "website/components/UseCases.tsx",
+          "website/components/Hero.tsx",
+          "website/components/Install.tsx",
+          "website/components/Audience.tsx",
+          "website/components/HowItWorks.tsx",
+          "website/components/TopicCTA.tsx",
+          "website/components/TopicContent.tsx",
+          "website/components/AgentSkills.tsx",
+          "website/components/Footer.tsx",
+          "website/components/MoreFromRaintree.tsx",
+          "website/components/Header.tsx",
+          "website/components/Skills.tsx",
+          "website/components/BeforeAfter.tsx",
+          "website/components/FAQ.tsx",
+          "website/components/EmailCTA.tsx",
+          "website/components/TopicSidebar.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      },
+      {
+        "name": "Interaction Patterns",
+        "skill": "hig-patterns",
+        "detections": 35,
+        "concerns": 0,
+        "positives": 33,
+        "patterns": 2,
+        "files": [
+          "website/app/layout.tsx",
+          "website/app/topics/page.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts",
+          "demos/remotion-hig-doctor/src/HigDoctorShowcase.jsx"
+        ]
+      },
+      {
+        "name": "Controls",
+        "skill": "hig-components-controls",
+        "detections": 25,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 25,
+        "files": [
+          "website/components/UseCases.tsx",
+          "website/components/Hero.tsx",
+          "website/components/Install.tsx",
+          "website/components/HowItWorks.tsx",
+          "website/components/TopicCopyButton.tsx",
+          "website/components/AgentSkills.tsx",
+          "website/components/Header.tsx",
+          "website/components/UpdateNotify.tsx",
+          "website/components/Skills.tsx",
+          "website/components/BeforeAfter.tsx",
+          "website/components/EmailCTA.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      },
+      {
+        "name": "Input Methods",
+        "skill": "hig-inputs",
+        "detections": 17,
+        "concerns": 0,
+        "positives": 14,
+        "patterns": 3,
+        "files": [
+          "website/app/layout.tsx",
+          "website/components/UpdateNotify.tsx",
+          "website/components/Skills.tsx",
+          "website/components/FAQ.tsx",
+          "website/components/EmailCTA.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      },
+      {
+        "name": "Content Display",
+        "skill": "hig-components-content",
+        "detections": 15,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 15,
+        "files": [
+          "website/components/UseCases.tsx",
+          "website/components/ui/table.tsx",
+          "website/components/Install.tsx",
+          "website/components/Audience.tsx",
+          "website/components/HowItWorks.tsx",
+          "website/components/AgentSkills.tsx",
+          "website/components/MoreFromRaintree.tsx",
+          "website/components/Skills.tsx",
+          "website/components/BeforeAfter.tsx",
+          "website/components/FAQ.tsx",
+          "website/components/TopicSidebar.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      },
+      {
+        "name": "Apple Technologies",
+        "skill": "hig-technologies",
+        "detections": 2,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 2,
+        "files": [
+          "website/app/layout.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      },
+      {
+        "name": "Status & Progress",
+        "skill": "hig-components-status",
+        "detections": 2,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 2,
+        "files": [
+          "website/components/AgentSkills.tsx",
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
+      },
+      {
+        "name": "Menus & Actions",
+        "skill": "hig-components-menus",
+        "detections": 2,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 2,
+        "files": [
+          "website/components/Header.tsx"
+        ]
+      },
+      {
+        "name": "Search & Navigation",
+        "skill": "hig-components-search",
+        "detections": 1,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 1,
+        "files": [
+          "website/components/Skills.tsx"
+        ]
+      },
+      {
+        "name": "Dialogs & Presentations",
+        "skill": "hig-components-dialogs",
+        "detections": 1,
+        "concerns": 0,
+        "positives": 0,
+        "patterns": 1,
+        "files": [
+          "packages/hig-doctor/src-termcast/src/patterns.ts"
+        ]
       }
     ]
   },
-  "broken": {
-    "directory": "/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo",
-    "skillCount": 1,
-    "summary": {
-      "errors": 16,
-      "warnings": 5,
-      "score": 0,
-      "label": "Critical",
-      "passed": false
+  "totalRules": 349,
+  "totalFrameworks": 12,
+  "topCategories": [
+    {
+      "name": "Foundations",
+      "skill": "hig-foundations",
+      "detections": 612,
+      "concerns": 0,
+      "positives": 595,
+      "patterns": 17,
+      "files": [
+        "website/app/layout.tsx",
+        "website/app/page.tsx",
+        "website/app/topics/page.tsx",
+        "website/app/topics/[slug]/page.tsx",
+        "website/components/UseCases.tsx",
+        "website/components/Hero.tsx",
+        "website/components/ui/card.tsx",
+        "website/components/ui/accordion.tsx",
+        "website/components/ui/badge.tsx",
+        "website/components/ui/table.tsx",
+        "website/components/ui/button.tsx",
+        "website/components/Install.tsx",
+        "website/components/Audience.tsx",
+        "website/components/HowItWorks.tsx",
+        "website/components/TopicCTA.tsx",
+        "website/components/TopicCopyButton.tsx",
+        "website/components/AgentSkills.tsx",
+        "website/components/Footer.tsx",
+        "website/components/MoreFromRaintree.tsx",
+        "website/components/Header.tsx",
+        "website/components/UpdateNotify.tsx",
+        "website/components/Skills.tsx",
+        "website/components/BeforeAfter.tsx",
+        "website/components/FAQ.tsx",
+        "website/components/EmailCTA.tsx",
+        "website/components/TopicSidebar.tsx",
+        "packages/hig-doctor/src-termcast/src/patterns.ts",
+        "demos/remotion-hig-doctor/src/HigDoctorShowcase.jsx",
+        "website/app/globals.css"
+      ]
     },
-    "topRules": [
-      {
-        "ruleId": "skill/required-section",
-        "count": 5
-      },
-      {
-        "ruleId": "repo/versions-no-duplicate-rows",
-        "count": 1
-      },
-      {
-        "ruleId": "skill/title-format",
-        "count": 1
-      },
-      {
-        "ruleId": "skill/context-check-hint",
-        "count": 1
-      },
-      {
-        "ruleId": "skill/name-matches-directory",
-        "count": 1
-      }
-    ],
-    "scopeBreakdown": [
-      {
-        "scope": "BadSkill",
-        "errors": 12,
-        "warnings": 4,
-        "total": 16
-      },
-      {
-        "scope": "repo",
-        "errors": 3,
-        "warnings": 1,
-        "total": 4
-      },
-      {
-        "scope": "not-real",
-        "errors": 1,
-        "warnings": 0,
-        "total": 1
-      }
-    ],
-    "sampleFindings": [
-      {
-        "severity": "error",
-        "ruleId": "repo/versions-no-duplicate-rows",
-        "message": "VERSIONS.md has duplicate rows for 'BadSkill'",
-        "file": "/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo/VERSIONS.md",
-        "skill": null
-      },
-      {
-        "severity": "warning",
-        "ruleId": "skill/title-format",
-        "message": "BadSkill: expected top-level heading like '# Apple HIG: ...'",
-        "file": "/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo/skills/BadSkill/SKILL.md",
-        "skill": "BadSkill"
-      },
-      {
-        "severity": "warning",
-        "ruleId": "skill/context-check-hint",
-        "message": "BadSkill: missing '.claude/apple-design-context.md' guidance",
-        "file": "/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo/skills/BadSkill/SKILL.md",
-        "skill": "BadSkill"
-      },
-      {
-        "severity": "error",
-        "ruleId": "skill/required-section",
-        "message": "BadSkill: missing required section '## Key Principles'",
-        "file": "/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo/skills/BadSkill/SKILL.md",
-        "skill": "BadSkill"
-      },
-      {
-        "severity": "error",
-        "ruleId": "skill/required-section",
-        "message": "BadSkill: missing required section '## Reference Index'",
-        "file": "/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo/skills/BadSkill/SKILL.md",
-        "skill": "BadSkill"
-      },
-      {
-        "severity": "error",
-        "ruleId": "skill/required-section",
-        "message": "BadSkill: missing required section '## Output Format'",
-        "file": "/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo/skills/BadSkill/SKILL.md",
-        "skill": "BadSkill"
-      }
-    ],
-    "todo": [
-      {
-        "id": "todo-1",
-        "priority": "high",
-        "severity": "error",
-        "ruleId": "skill/required-section",
-        "scope": "BadSkill",
-        "occurrences": 5,
-        "files": [
-          "skills/BadSkill/SKILL.md"
-        ],
-        "task": "Fix skill/required-section in BadSkill",
-        "details": "BadSkill: missing required section '## Key Principles'",
-        "doneWhen": "No skill/required-section findings remain for scope 'BadSkill' and score reaches 100/100.",
-        "verifyCommand": "node packages/hig-doctor/src/cli.js \"/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo\" --json"
-      },
-      {
-        "id": "todo-2",
-        "priority": "high",
-        "severity": "error",
-        "ruleId": "repo/marketplace-includes-all-skills",
-        "scope": "BadSkill",
-        "occurrences": 1,
-        "files": [
-          ".claude-plugin/marketplace.json"
-        ],
-        "task": "Fix repo/marketplace-includes-all-skills in BadSkill",
-        "details": "marketplace.json is missing skill 'BadSkill'",
-        "doneWhen": "No repo/marketplace-includes-all-skills findings remain for scope 'BadSkill' and score reaches 100/100.",
-        "verifyCommand": "node packages/hig-doctor/src/cli.js \"/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo\" --json"
-      },
-      {
-        "id": "todo-3",
-        "priority": "high",
-        "severity": "error",
-        "ruleId": "skill/name-matches-directory",
-        "scope": "BadSkill",
-        "occurrences": 1,
-        "files": [
-          "skills/BadSkill/SKILL.md"
-        ],
-        "task": "Fix skill/name-matches-directory in BadSkill",
-        "details": "BadSkill: name 'bad--skill' does not match directory name",
-        "doneWhen": "No skill/name-matches-directory findings remain for scope 'BadSkill' and score reaches 100/100.",
-        "verifyCommand": "node packages/hig-doctor/src/cli.js \"/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo\" --json"
-      },
-      {
-        "id": "todo-4",
-        "priority": "high",
-        "severity": "error",
-        "ruleId": "skill/name-no-consecutive-hyphens",
-        "scope": "BadSkill",
-        "occurrences": 1,
-        "files": [
-          "skills/BadSkill/SKILL.md"
-        ],
-        "task": "Fix skill/name-no-consecutive-hyphens in BadSkill",
-        "details": "BadSkill: name 'bad--skill' contains consecutive hyphens",
-        "doneWhen": "No skill/name-no-consecutive-hyphens findings remain for scope 'BadSkill' and score reaches 100/100.",
-        "verifyCommand": "node packages/hig-doctor/src/cli.js \"/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo\" --json"
-      },
-      {
-        "id": "todo-5",
-        "priority": "high",
-        "severity": "error",
-        "ruleId": "skill/reference-file-exists",
-        "scope": "BadSkill",
-        "occurrences": 1,
-        "files": [
-          "skills/BadSkill/SKILL.md"
-        ],
-        "task": "Fix skill/reference-file-exists in BadSkill",
-        "details": "BadSkill: referenced file 'references/nope.md' does not exist",
-        "doneWhen": "No skill/reference-file-exists findings remain for scope 'BadSkill' and score reaches 100/100.",
-        "verifyCommand": "node packages/hig-doctor/src/cli.js \"/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo\" --json"
-      },
-      {
-        "id": "todo-6",
-        "priority": "high",
-        "severity": "error",
-        "ruleId": "skill/references-directory-exists",
-        "scope": "BadSkill",
-        "occurrences": 1,
-        "files": [
-          "skills/BadSkill/references"
-        ],
-        "task": "Fix skill/references-directory-exists in BadSkill",
-        "details": "BadSkill: references/ directory is required",
-        "doneWhen": "No skill/references-directory-exists findings remain for scope 'BadSkill' and score reaches 100/100.",
-        "verifyCommand": "node packages/hig-doctor/src/cli.js \"/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo\" --json"
-      },
-      {
-        "id": "todo-7",
-        "priority": "high",
-        "severity": "error",
-        "ruleId": "skill/version-matches-versions",
-        "scope": "BadSkill",
-        "occurrences": 1,
-        "files": [
-          "skills/BadSkill/SKILL.md"
-        ],
-        "task": "Fix skill/version-matches-versions in BadSkill",
-        "details": "BadSkill: version 'one' does not match VERSIONS.md '1.0.0'",
-        "doneWhen": "No skill/version-matches-versions findings remain for scope 'BadSkill' and score reaches 100/100.",
-        "verifyCommand": "node packages/hig-doctor/src/cli.js \"/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo\" --json"
-      },
-      {
-        "id": "todo-8",
-        "priority": "high",
-        "severity": "error",
-        "ruleId": "skill/version-semver",
-        "scope": "BadSkill",
-        "occurrences": 1,
-        "files": [
-          "skills/BadSkill/SKILL.md"
-        ],
-        "task": "Fix skill/version-semver in BadSkill",
-        "details": "BadSkill: version 'one' is not valid semver",
-        "doneWhen": "No skill/version-semver findings remain for scope 'BadSkill' and score reaches 100/100.",
-        "verifyCommand": "node packages/hig-doctor/src/cli.js \"/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo\" --json"
-      },
-      {
-        "id": "todo-9",
-        "priority": "high",
-        "severity": "error",
-        "ruleId": "repo/marketplace-skill-exists",
-        "scope": "not-real",
-        "occurrences": 1,
-        "files": [
-          ".claude-plugin/marketplace.json"
-        ],
-        "task": "Fix repo/marketplace-skill-exists in not-real",
-        "details": "marketplace.json references unknown skill 'not-real'",
-        "doneWhen": "No repo/marketplace-skill-exists findings remain for scope 'not-real' and score reaches 100/100.",
-        "verifyCommand": "node packages/hig-doctor/src/cli.js \"/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo\" --json"
-      },
-      {
-        "id": "todo-10",
-        "priority": "high",
-        "severity": "error",
-        "ruleId": "repo/marketplace-skill-path-format",
-        "scope": "repo",
-        "occurrences": 1,
-        "files": [
-          ".claude-plugin/marketplace.json"
-        ],
-        "task": "Fix repo/marketplace-skill-path-format in repo",
-        "details": "marketplace skill path './skills/BadSkill/extra' must match './skills/<name>'",
-        "doneWhen": "No repo/marketplace-skill-path-format findings remain for scope 'repo' and score reaches 100/100.",
-        "verifyCommand": "node packages/hig-doctor/src/cli.js \"/Users/zach/Code/raintree/apple-hig-skills/demos/remotion-hig-doctor/fixtures/broken-repo\" --json"
-      }
-    ],
-    "todoCounts": {
-      "high": 12,
-      "medium": 5,
-      "low": 0
+    {
+      "name": "Layout & Navigation",
+      "skill": "hig-components-layout",
+      "detections": 42,
+      "concerns": 0,
+      "positives": 11,
+      "patterns": 31,
+      "files": [
+        "website/app/page.tsx",
+        "website/app/topics/page.tsx",
+        "website/app/topics/[slug]/page.tsx",
+        "website/components/UseCases.tsx",
+        "website/components/Hero.tsx",
+        "website/components/Install.tsx",
+        "website/components/Audience.tsx",
+        "website/components/HowItWorks.tsx",
+        "website/components/TopicCTA.tsx",
+        "website/components/TopicContent.tsx",
+        "website/components/AgentSkills.tsx",
+        "website/components/Footer.tsx",
+        "website/components/MoreFromRaintree.tsx",
+        "website/components/Header.tsx",
+        "website/components/Skills.tsx",
+        "website/components/BeforeAfter.tsx",
+        "website/components/FAQ.tsx",
+        "website/components/EmailCTA.tsx",
+        "website/components/TopicSidebar.tsx",
+        "packages/hig-doctor/src-termcast/src/patterns.ts"
+      ]
+    },
+    {
+      "name": "Interaction Patterns",
+      "skill": "hig-patterns",
+      "detections": 35,
+      "concerns": 0,
+      "positives": 33,
+      "patterns": 2,
+      "files": [
+        "website/app/layout.tsx",
+        "website/app/topics/page.tsx",
+        "packages/hig-doctor/src-termcast/src/patterns.ts",
+        "demos/remotion-hig-doctor/src/HigDoctorShowcase.jsx"
+      ]
+    },
+    {
+      "name": "Controls",
+      "skill": "hig-components-controls",
+      "detections": 25,
+      "concerns": 0,
+      "positives": 0,
+      "patterns": 25,
+      "files": [
+        "website/components/UseCases.tsx",
+        "website/components/Hero.tsx",
+        "website/components/Install.tsx",
+        "website/components/HowItWorks.tsx",
+        "website/components/TopicCopyButton.tsx",
+        "website/components/AgentSkills.tsx",
+        "website/components/Header.tsx",
+        "website/components/UpdateNotify.tsx",
+        "website/components/Skills.tsx",
+        "website/components/BeforeAfter.tsx",
+        "website/components/EmailCTA.tsx",
+        "packages/hig-doctor/src-termcast/src/patterns.ts"
+      ]
+    },
+    {
+      "name": "Input Methods",
+      "skill": "hig-inputs",
+      "detections": 17,
+      "concerns": 0,
+      "positives": 14,
+      "patterns": 3,
+      "files": [
+        "website/app/layout.tsx",
+        "website/components/UpdateNotify.tsx",
+        "website/components/Skills.tsx",
+        "website/components/FAQ.tsx",
+        "website/components/EmailCTA.tsx",
+        "packages/hig-doctor/src-termcast/src/patterns.ts"
+      ]
+    },
+    {
+      "name": "Content Display",
+      "skill": "hig-components-content",
+      "detections": 15,
+      "concerns": 0,
+      "positives": 0,
+      "patterns": 15,
+      "files": [
+        "website/components/UseCases.tsx",
+        "website/components/ui/table.tsx",
+        "website/components/Install.tsx",
+        "website/components/Audience.tsx",
+        "website/components/HowItWorks.tsx",
+        "website/components/AgentSkills.tsx",
+        "website/components/MoreFromRaintree.tsx",
+        "website/components/Skills.tsx",
+        "website/components/BeforeAfter.tsx",
+        "website/components/FAQ.tsx",
+        "website/components/TopicSidebar.tsx",
+        "packages/hig-doctor/src-termcast/src/patterns.ts"
+      ]
     }
-  },
+  ],
+  "frameworkRuleCounts": [
+    {
+      "framework": "React / Next.js",
+      "rules": "100+"
+    },
+    {
+      "framework": "SwiftUI",
+      "rules": "55+"
+    },
+    {
+      "framework": "CSS / SCSS",
+      "rules": "40+"
+    },
+    {
+      "framework": "Jetpack Compose",
+      "rules": "30+"
+    },
+    {
+      "framework": "Angular",
+      "rules": "25+"
+    },
+    {
+      "framework": "Vue / Nuxt",
+      "rules": "25+"
+    },
+    {
+      "framework": "Svelte / SvelteKit",
+      "rules": "20+"
+    },
+    {
+      "framework": "Android XML",
+      "rules": "20+"
+    },
+    {
+      "framework": "Flutter",
+      "rules": "20+"
+    },
+    {
+      "framework": "React Native",
+      "rules": "15+"
+    },
+    {
+      "framework": "HTML",
+      "rules": "15+"
+    },
+    {
+      "framework": "UIKit",
+      "rules": "10+"
+    }
+  ],
   "scoreTimeline": [
     {
-      "label": "Broken fixture",
-      "score": 0
+      "label": "Poor project",
+      "score": 35
     },
     {
-      "label": "After fixes",
-      "score": 50
+      "label": "Average project",
+      "score": 72
     },
     {
-      "label": "Current repo",
+      "label": "This repo",
       "score": 100
     }
   ]

@@ -10,32 +10,29 @@ import {
   useVideoConfig
 } from "remotion";
 import reportData from "./data/report-data.json";
-import ralphBestScript from "./data/ralph-best-script.json";
 
-const copyOverrides = {
-  kicker: "HIG-DOCTOR AGENT WORKFLOW",
-  headline: "Failing repo in.\n100/100 plan out.",
+const copy = {
+  kicker: "HIG AUDIT \u2014 UNIVERSAL SCANNER",
+  headline: "349 rules.\n12 frameworks.\nOne score.",
   subhead:
-    "hig-doctor converts repository validation into deterministic TODO items with priority, rule IDs, and done-when criteria so an agent can execute fixes to completion.",
-  whatItDoesTitle: "What this demo proves",
+    "Scans code, stylesheets, and config files for Apple HIG compliance. Detects accessibility, color systems, typography, dark mode, responsive layout, motion preferences, and more.",
+  whatItDoesTitle: "What the audit detects",
   whatItDoesBullets: [
-    "Runs the same checks on a broken fixture and a healthy repository.",
-    "Outputs explicit TODO tasks with scope, files, and verification commands.",
-    "Lets an agent close findings in order and verify a clean 100/100 run."
+    "Accessibility anti-patterns: missing ARIA roles, empty alt text, outline removal, positive tabindex.",
+    "Context-aware rules: skips false positives in @media print, prefers-reduced-motion, and :focus-visible.",
+    "Framework-specific patterns across SwiftUI, React, Vue, Angular, Flutter, Compose, and more."
   ],
-  doctorTitle: "Validation output an agent can execute",
-  doctorBullets: [
-    "Each finding includes a rule ID and scope, so ownership and file targets are unambiguous.",
-    "TODO items include priority and done-when criteria to prevent partial fixes.",
-    "--json output is stable for CI and autonomous remediation loops."
+  categoriesTitle: "Detections by HIG category",
+  frameworksTitle: "Framework coverage",
+  frameworksBullets: [
+    "349 regex rules across 12 framework ecosystems.",
+    "Each detection classified as positive, concern, or neutral pattern.",
+    "Context-aware CSS block tracking eliminates false positives."
   ],
-  agentPathTitle: "Top TODOs to unblock score",
-  outroHeadline: "Structured findings in. Deterministic 100/100 out.",
+  outroHeadline: "Ship with confidence.",
   outroSubline:
-    "A clear fix queue, explicit completion checks, and a verifiable finish line."
+    "One command. 349 rules. Every framework. Zero configuration."
 };
-
-const scriptCopy = {...ralphBestScript.script, ...copyOverrides};
 
 const palette = {
   background: "#0b0c0f",
@@ -164,7 +161,7 @@ const BrandFooter = () => (
         }}
       />
       <span style={{fontFamily: uiFont, fontSize: 13, color: palette.mutedForeground, fontWeight: 560, letterSpacing: 0.08}}>
-        Raintree Technology™
+        Raintree Technology
       </span>
     </div>
 
@@ -177,11 +174,29 @@ const BrandFooter = () => (
   </div>
 );
 
+/* ── Scene 1: Intro ──────────────────────────────────────────────────── */
+
 const IntroScene = ({durationInFrames}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const fade = sceneFade(frame, durationInFrames);
   const rise = spring({frame, fps, config: {damping: 135}});
+
+  const project = reportData.project;
+  const totalFiles = project.files.code + project.files.style + (project.files.config || 0);
+  const totalDetections = project.totals.concerns + project.totals.positives + project.totals.patterns;
+
+  const terminalLines = [
+    "$ bun run audit ./my-app",
+    `Scanned ${project.files.code} code + ${project.files.style} style files`,
+    "",
+    `  HIG Audit: ${project.name}   ${project.score}/100`,
+    `  ${project.frameworks.join(", ")} \u00b7 ${totalDetections} detections \u00b7 ${totalFiles} files`,
+    "",
+    `  ${project.totals.positives} good  ${project.totals.patterns} patterns  ${project.totals.concerns} concerns`,
+    "",
+    "  Excellent \u2014 Strong HIG compliance across the board.",
+  ];
 
   return (
     <AbsoluteFill style={{opacity: fade, padding: "68px 84px 96px", justifyContent: "center"}}>
@@ -196,69 +211,22 @@ const IntroScene = ({durationInFrames}) => {
         }}
       >
         <div>
-          <div
-            style={{
-              fontFamily: uiFont,
-              color: palette.chart1,
-              fontSize: 14,
-              letterSpacing: 1.4,
-              textTransform: "uppercase",
-              fontWeight: 560
-            }}
-          >
-            {scriptCopy.kicker}
+          <div style={{fontFamily: uiFont, color: palette.chart1, fontSize: 14, letterSpacing: 1.4, textTransform: "uppercase", fontWeight: 560}}>
+            {copy.kicker}
           </div>
-          <div
-            style={{
-              fontFamily: uiFont,
-              color: palette.foreground,
-              fontSize: 58,
-              lineHeight: 0.99,
-              letterSpacing: "-0.024em",
-              fontWeight: 600,
-              marginTop: 8,
-              whiteSpace: "pre-line"
-            }}
-          >
-            {scriptCopy.headline}
+          <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 58, lineHeight: 0.99, letterSpacing: "-0.024em", fontWeight: 600, marginTop: 8, whiteSpace: "pre-line"}}>
+            {copy.headline}
           </div>
-          <div
-            style={{
-              fontFamily: uiFont,
-              color: palette.mutedForeground,
-              fontSize: 22,
-              lineHeight: 1.34,
-              letterSpacing: "-0.012em",
-              marginTop: 14,
-              maxWidth: 860
-            }}
-          >
-            {scriptCopy.subhead}
+          <div style={{fontFamily: uiFont, color: palette.mutedForeground, fontSize: 22, lineHeight: 1.34, letterSpacing: "-0.012em", marginTop: 14, maxWidth: 860}}>
+            {copy.subhead}
           </div>
 
-          <div
-            style={{
-              ...glassCard,
-              marginTop: 16,
-              padding: "14px 16px",
-              borderRadius: 14,
-              background: palette.cardSoft
-            }}
-          >
-            <div
-              style={{
-                fontFamily: uiFont,
-                fontSize: 12,
-                color: palette.chart2,
-                letterSpacing: 1.2,
-                textTransform: "uppercase",
-                fontWeight: 600
-              }}
-            >
-              {scriptCopy.whatItDoesTitle}
+          <div style={{...glassCard, marginTop: 16, padding: "14px 16px", borderRadius: 14, background: palette.cardSoft}}>
+            <div style={{fontFamily: uiFont, fontSize: 12, color: palette.chart2, letterSpacing: 1.2, textTransform: "uppercase", fontWeight: 600}}>
+              {copy.whatItDoesTitle}
             </div>
             <div style={{marginTop: 8, display: "grid", gap: 6}}>
-              {scriptCopy.whatItDoesBullets.map((line) => (
+              {copy.whatItDoesBullets.map((line) => (
                 <div key={line} style={{display: "grid", gridTemplateColumns: "12px 1fr", gap: 7, alignItems: "start"}}>
                   <span style={{width: 6, height: 6, borderRadius: 999, background: palette.chart2, marginTop: 8}} />
                   <span style={{fontFamily: uiFont, color: palette.mutedForeground, fontSize: 17, lineHeight: 1.34}}>{line}</span>
@@ -268,10 +236,10 @@ const IntroScene = ({durationInFrames}) => {
           </div>
 
           <div style={{display: "flex", flexWrap: "wrap", gap: 8, marginTop: 14}}>
-            <StatPill label="skills" value={String(reportData.baseline.skillCount)} accent={palette.chart1} />
-            <StatPill label="broken score" value={`${reportData.broken.summary.score}/100`} accent={palette.error} />
-            <StatPill label="target score" value={`${reportData.baseline.summary.score}/100`} accent={palette.success} />
-            <StatPill label="high-priority TODO" value={String(reportData.broken.todoCounts.high)} accent={palette.warning} />
+            <StatPill label="score" value={`${project.score}/100`} accent={palette.success} />
+            <StatPill label="detections" value={String(totalDetections)} accent={palette.chart1} />
+            <StatPill label="frameworks" value={project.frameworks.join(", ")} accent={palette.chart3} />
+            <StatPill label="categories" value={String(project.categories.length)} accent={palette.chart4} />
           </div>
         </div>
 
@@ -289,18 +257,8 @@ const IntroScene = ({durationInFrames}) => {
             <span style={{width: 9, height: 9, borderRadius: 999, background: palette.error, opacity: 0.82}} />
             <span style={{width: 9, height: 9, borderRadius: 999, background: palette.warning, opacity: 0.82}} />
             <span style={{width: 9, height: 9, borderRadius: 999, background: palette.success, opacity: 0.82}} />
-            <span
-              style={{
-                flex: 1,
-                textAlign: "center",
-                fontFamily: uiFont,
-                color: palette.subtleForeground,
-                fontSize: 11,
-                fontWeight: 600,
-                letterSpacing: 0.35
-              }}
-            >
-              hig-doctor output
+            <span style={{flex: 1, textAlign: "center", fontFamily: uiFont, color: palette.subtleForeground, fontSize: 11, fontWeight: 600, letterSpacing: 0.35}}>
+              hig-doctor audit
             </span>
             <span style={{width: 22}} />
           </div>
@@ -316,24 +274,16 @@ const IntroScene = ({durationInFrames}) => {
               color: "rgba(255,255,255,0.86)"
             }}
           >
-            {[
-              "$ node packages/hig-doctor/src/cli.js fixtures/broken-repo --json",
-              `Score: ${reportData.broken.summary.score}/100 (${reportData.broken.summary.label})`,
-              `Errors: ${reportData.broken.summary.errors}  Warnings: ${reportData.broken.summary.warnings}`,
-              "",
-              "Agent TODO (goal: 100/100, 0 errors, 0 warnings)",
-              `1. [HIGH] Resolve ${reportData.broken.todoCounts.high} high-priority tasks first`,
-              "   Done when: rerun doctor and score is 100/100"
-            ].map((line, index) => (
+            {terminalLines.map((line, index) => (
               <div
-                key={line}
+                key={`${index}-${line}`}
                 style={{
                   color: line.startsWith("$")
                     ? "rgba(255,255,255,0.96)"
-                    : line.startsWith("Score")
+                    : line.includes("/100")
                       ? palette.success
-                      : line.startsWith("Agent TODO")
-                        ? palette.chart1
+                      : line.includes("Excellent")
+                        ? palette.chart2
                         : "rgba(255,255,255,0.78)",
                   transform: `translateY(${interpolate(frame, [0, 24 + index * 2], [8, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})}px)`,
                   opacity: interpolate(frame, [0, 18 + index * 3], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})
@@ -349,24 +299,25 @@ const IntroScene = ({durationInFrames}) => {
   );
 };
 
-const SeverityScene = ({durationInFrames}) => {
+/* ── Scene 2: Categories ─────────────────────────────────────────────── */
+
+const CategoriesScene = ({durationInFrames}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const fade = sceneFade(frame, durationInFrames);
-  const findingStats = [
-    {label: "Errors", value: reportData.broken.summary.errors, color: palette.error},
-    {label: "Warnings", value: reportData.broken.summary.warnings, color: palette.warning}
-  ];
-  const todoStats = [
-    {label: "High", value: reportData.broken.todoCounts.high, color: palette.error},
-    {label: "Medium", value: reportData.broken.todoCounts.medium, color: palette.warning},
-    {label: "Low", value: reportData.broken.todoCounts.low, color: palette.success}
-  ];
 
-  const maxValue = Math.max(...findingStats.map((s) => s.value), 1);
-  const totalFindings = findingStats.reduce((sum, s) => sum + s.value, 0);
-  const totalTodo = Math.max(1, todoStats.reduce((sum, s) => sum + s.value, 0));
-  const scoreTimeline = reportData.scoreTimeline ?? [];
+  const categories = reportData.topCategories;
+  const maxDetections = Math.max(...categories.map((c) => c.detections), 1);
+  const project = reportData.project;
+  const totalDetections = project.totals.concerns + project.totals.positives + project.totals.patterns;
+  const scoreTimeline = reportData.scoreTimeline;
+
+  const donutStats = [
+    {label: "Positives", value: project.totals.positives, color: palette.success},
+    {label: "Patterns", value: project.totals.patterns, color: palette.chart3},
+    {label: "Concerns", value: project.totals.concerns, color: palette.error}
+  ].filter((s) => s.value > 0);
+  const totalDonut = Math.max(1, donutStats.reduce((sum, s) => sum + s.value, 0));
   const radius = 120;
   const strokeWidth = 28;
   const circumference = 2 * Math.PI * radius;
@@ -375,68 +326,62 @@ const SeverityScene = ({durationInFrames}) => {
   return (
     <AbsoluteFill style={{opacity: fade, padding: "68px 84px 96px", justifyContent: "center"}}>
       <div style={{...glassCard, padding: 24}}>
-        <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 52, letterSpacing: "-0.022em", fontWeight: 600}}>Broken run: prioritized for execution</div>
+        <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 52, letterSpacing: "-0.022em", fontWeight: 600}}>
+          {copy.categoriesTitle}
+        </div>
         <div style={{fontFamily: uiFont, color: palette.mutedForeground, fontSize: 21, letterSpacing: "-0.012em", marginTop: 6}}>
-          {`${reportData.broken.summary.errors} errors, ${reportData.broken.summary.warnings} warnings, and ${totalTodo} generated TODO items. Fix high-priority items first, then verify to 100/100.`}
+          {`${totalDetections} detections across ${categories.length} HIG categories. ${project.totals.positives} positive patterns found.`}
         </div>
 
         <div style={{marginTop: 16, display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 14}}>
-          <div style={{...glassCard, borderRadius: 14, padding: 14, minHeight: 438}}>
-            <div style={{fontFamily: uiFont, color: palette.subtleForeground, fontSize: 12, letterSpacing: 1.1, textTransform: "uppercase", fontWeight: 600}}>{`Findings by severity (${totalFindings})`}</div>
-            <div style={{position: "relative", height: 312, marginTop: 12}}>
-              {[0, 1, 2, 3, 4].map((i) => (
-                <div
-                  key={i}
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    right: 0,
-                    top: i * 78,
-                    borderTop: `1px solid ${palette.ring}`
-                  }}
-                />
-              ))}
-
-              <div style={{position: "absolute", inset: 0, display: "flex", alignItems: "flex-end", justifyContent: "space-evenly"}}>
-                {findingStats.map((item, index) => {
-                  const grow = spring({frame, fps, delay: index * 10, config: {damping: 190}});
-                  const height = interpolate(item.value / maxValue, [0, 1], [24, 248]) * grow;
-                  return (
-                    <div key={item.label} style={{display: "flex", flexDirection: "column", alignItems: "center", gap: 7}}>
-                      <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 40, fontWeight: 600}}>{item.value}</div>
-                      <div
-                        style={{
-                          width: 164,
-                          height,
-                          borderRadius: "14px 14px 8px 8px",
-                          background: `linear-gradient(180deg, ${item.color}, ${item.color}8f)`,
-                          boxShadow: `0 8px 20px ${item.color}3a`
-                        }}
-                      />
-                      <div style={{fontFamily: uiFont, color: palette.mutedForeground, fontSize: 22}}>{item.label}</div>
+          <div style={{...glassCard, borderRadius: 14, padding: 14}}>
+            <div style={{fontFamily: uiFont, color: palette.subtleForeground, fontSize: 12, letterSpacing: 1.1, textTransform: "uppercase", fontWeight: 600}}>
+              Top categories by detection count
+            </div>
+            <div style={{marginTop: 14, display: "grid", gap: 8}}>
+              {categories.map((cat, index) => {
+                const grow = spring({frame, fps, delay: index * 7, config: {damping: 200}});
+                const barWidth = interpolate(grow, [0, 1], [0, (cat.detections / maxDetections) * 100]);
+                const positiveWidth = cat.detections > 0 ? (cat.positives / cat.detections) * barWidth : 0;
+                return (
+                  <div key={cat.name} style={{...glassCard, borderRadius: 12, padding: "10px 12px", background: palette.cardSoft}}>
+                    <div style={{display: "grid", gridTemplateColumns: "1fr auto", gap: 8, alignItems: "center"}}>
+                      <div style={{fontFamily: uiFont, color: palette.mutedForeground, fontSize: 16, fontWeight: 500}}>{cat.name}</div>
+                      <div style={{display: "flex", alignItems: "baseline", gap: 4}}>
+                        <span style={{fontFamily: uiFont, color: palette.foreground, fontSize: 24, fontWeight: 600}}>{cat.detections}</span>
+                        {cat.positives > 0 && (
+                          <span style={{fontFamily: uiFont, color: palette.success, fontSize: 13}}>{cat.positives} good</span>
+                        )}
+                      </div>
                     </div>
-                  );
-                })}
-              </div>
+                    <div style={{marginTop: 7, height: 8, borderRadius: 999, background: "rgba(255,255,255,0.1)", overflow: "hidden", display: "flex"}}>
+                      <div style={{height: "100%", width: `${positiveWidth}%`, background: palette.success, borderRadius: "999px 0 0 999px"}} />
+                      <div style={{height: "100%", width: `${barWidth - positiveWidth}%`, background: `${palette.chart3}88`, borderRadius: "0 999px 999px 0"}} />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
           <div style={{display: "grid", gridTemplateRows: "1fr auto", gap: 10}}>
-            <div style={{...glassCard, borderRadius: 14, padding: 14, minHeight: 352, display: "flex", flexDirection: "column"}}>
-              <div style={{fontFamily: uiFont, color: palette.subtleForeground, fontSize: 12, letterSpacing: 1.1, textTransform: "uppercase", fontWeight: 600}}>TODO priority mix</div>
+            <div style={{...glassCard, borderRadius: 14, padding: 14, display: "flex", flexDirection: "column"}}>
+              <div style={{fontFamily: uiFont, color: palette.subtleForeground, fontSize: 12, letterSpacing: 1.1, textTransform: "uppercase", fontWeight: 600}}>
+                Detection breakdown
+              </div>
               <div style={{flex: 1, display: "flex", alignItems: "center", justifyContent: "center", position: "relative"}}>
-                <svg width="360" height="360" viewBox="0 0 360 360">
+                <svg width="360" height="360" viewBox="0 0 360 360" aria-hidden="true">
                   <circle cx="180" cy="180" r={radius} stroke="rgba(255,255,255,0.12)" strokeWidth={strokeWidth} fill="none" />
-                  {todoStats.map((item) => {
+                  {donutStats.map((item) => {
                     const progress = interpolate(frame, [0, 98], [0, 1], {
                       extrapolateLeft: "clamp",
                       extrapolateRight: "clamp",
                       easing: Easing.out(Easing.cubic)
                     });
-                    const fraction = item.value / totalTodo;
+                    const fraction = item.value / totalDonut;
                     const segmentLength = circumference * fraction;
                     const offset = interpolate(progress, [0, 1], [segmentLength, 0]);
-                    const rotation = (consumed / totalTodo) * 360 - 90;
+                    const rotation = (consumed / totalDonut) * 360 - 90;
                     consumed += item.value;
                     return (
                       <circle
@@ -456,9 +401,17 @@ const SeverityScene = ({durationInFrames}) => {
                   })}
                 </svg>
                 <div style={{position: "absolute", textAlign: "center"}}>
-                  <div style={{fontFamily: uiFont, color: palette.subtleForeground, fontSize: 16}}>agent TODO</div>
-                  <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 54, fontWeight: 600}}>{totalTodo}</div>
+                  <div style={{fontFamily: uiFont, color: palette.subtleForeground, fontSize: 16}}>detections</div>
+                  <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 54, fontWeight: 600}}>{totalDetections}</div>
                 </div>
+              </div>
+              <div style={{display: "flex", justifyContent: "center", gap: 16, marginTop: 4}}>
+                {donutStats.map((item) => (
+                  <div key={item.label} style={{display: "flex", alignItems: "center", gap: 6}}>
+                    <span style={{width: 8, height: 8, borderRadius: 999, background: item.color}} />
+                    <span style={{fontFamily: uiFont, color: palette.mutedForeground, fontSize: 13}}>{item.label} ({item.value})</span>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -489,20 +442,26 @@ const SeverityScene = ({durationInFrames}) => {
   );
 };
 
-const RulesScene = ({durationInFrames}) => {
+/* ── Scene 3: Frameworks ─────────────────────────────────────────────── */
+
+const FrameworksScene = ({durationInFrames}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const fade = sceneFade(frame, durationInFrames);
-  const topRules = reportData.broken.topRules;
-  const maxCount = Math.max(...topRules.map((r) => r.count), 1);
+
+  const frameworks = reportData.frameworkRuleCounts;
+  const leftCol = frameworks.slice(0, 6);
+  const rightCol = frameworks.slice(6, 12);
 
   return (
     <AbsoluteFill style={{opacity: fade, padding: "68px 84px 96px", justifyContent: "center"}}>
       <div style={{...glassCard, padding: 24, display: "grid", gridTemplateColumns: "1.08fr 0.92fr", gap: 14}}>
         <div>
-          <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 50, letterSpacing: "-0.022em", fontWeight: 600}}>{scriptCopy.doctorTitle}</div>
+          <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 50, letterSpacing: "-0.022em", fontWeight: 600}}>
+            {copy.frameworksTitle}
+          </div>
           <div style={{marginTop: 10, display: "grid", gap: 6}}>
-            {scriptCopy.doctorBullets.map((line) => (
+            {copy.frameworksBullets.map((line) => (
               <div key={line} style={{display: "grid", gridTemplateColumns: "12px 1fr", gap: 7, alignItems: "start"}}>
                 <span style={{width: 6, height: 6, borderRadius: 999, background: palette.chart1, marginTop: 8}} />
                 <span style={{fontFamily: uiFont, color: palette.mutedForeground, fontSize: 18, lineHeight: 1.34}}>{line}</span>
@@ -510,37 +469,57 @@ const RulesScene = ({durationInFrames}) => {
             ))}
           </div>
 
-          <div style={{fontFamily: uiFont, color: palette.subtleForeground, fontSize: 12, letterSpacing: 1.1, textTransform: "uppercase", fontWeight: 600, marginTop: 13}}>
-            Most frequent failing rules
+          <div style={{fontFamily: uiFont, color: palette.subtleForeground, fontSize: 12, letterSpacing: 1.1, textTransform: "uppercase", fontWeight: 600, marginTop: 16}}>
+            Supported frameworks
           </div>
-          <div style={{marginTop: 14, display: "grid", gap: 8}}>
-            {topRules.map((rule, index) => {
-              const grow = spring({frame, fps, delay: index * 7, config: {damping: 200}});
-              const width = interpolate(grow, [0, 1], [0, (rule.count / maxCount) * 100]);
-              return (
-                <div key={rule.ruleId} style={{...glassCard, borderRadius: 12, padding: "10px 12px", background: palette.cardSoft}}>
-                  <div style={{display: "grid", gridTemplateColumns: "1fr auto", gap: 8, alignItems: "center"}}>
-                    <div style={{fontFamily: uiFont, color: palette.mutedForeground, fontSize: 17, fontWeight: 500}}>{rule.ruleId}</div>
-                    <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 26, fontWeight: 600}}>{rule.count}</div>
-                  </div>
-                  <div style={{marginTop: 7, height: 8, borderRadius: 999, background: "rgba(255,255,255,0.1)", overflow: "hidden"}}>
-                    <div style={{height: "100%", width: `${width}%`, background: `linear-gradient(90deg, ${palette.chart1}, ${palette.chart2})`, borderRadius: 999}} />
-                  </div>
-                </div>
-              );
-            })}
+          <div style={{marginTop: 10, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6}}>
+            {[leftCol, rightCol].map((col, colIdx) => (
+              <div key={colIdx} style={{display: "grid", gap: 6}}>
+                {col.map((fw, index) => {
+                  const rise = spring({frame, fps, delay: (colIdx * 6 + index) * 3, config: {damping: 200}});
+                  return (
+                    <div
+                      key={fw.framework}
+                      style={{
+                        ...glassCard,
+                        borderRadius: 10,
+                        padding: "8px 10px",
+                        background: palette.cardSoft,
+                        display: "grid",
+                        gridTemplateColumns: "1fr auto",
+                        alignItems: "center",
+                        transform: `translateY(${interpolate(rise, [0, 1], [6, 0])}px)`,
+                        opacity: rise
+                      }}
+                    >
+                      <span style={{fontFamily: uiFont, color: palette.mutedForeground, fontSize: 15}}>{fw.framework}</span>
+                      <span style={{fontFamily: monoFont, color: palette.chart1, fontSize: 14, fontWeight: 600}}>{fw.rules}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
           </div>
         </div>
 
         <div style={{...glassCard, borderRadius: 14, padding: 14}}>
-          <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 20, fontWeight: 600, letterSpacing: "-0.01em"}}>{scriptCopy.agentPathTitle}</div>
+          <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 20, fontWeight: 600, letterSpacing: "-0.01em"}}>
+            What it checks
+          </div>
           <div style={{marginTop: 8, display: "grid", gap: 7}}>
-            {reportData.broken.todo.slice(0, 5).map((todo, index) => {
+            {[
+              {area: "Accessibility", detail: "ARIA roles, alt text, focus management, touch targets, heading hierarchy"},
+              {area: "Color Systems", detail: "Semantic tokens vs hardcoded values, dark mode support, CSS custom properties"},
+              {area: "Typography", detail: "Dynamic Type, relative units vs fixed px, font scale compliance"},
+              {area: "Layout", detail: "Responsive breakpoints, logical properties, RTL support, adaptive patterns"},
+              {area: "Motion", detail: "prefers-reduced-motion, transitions, animations, scroll behavior"},
+              {area: "Internationalization", detail: "lang attributes, RTL layout, logical properties, i18n frameworks"},
+              {area: "Forms & Input", detail: "Labels, fieldset/legend, autocomplete, input types, validation"},
+            ].map((item, index) => {
               const rise = spring({frame, fps, delay: index * 5, config: {damping: 190}});
-              const priorityColor = todo.priority === "high" ? palette.error : todo.priority === "medium" ? palette.warning : palette.success;
               return (
                 <div
-                  key={todo.id}
+                  key={item.area}
                   style={{
                     borderRadius: 10,
                     border: `1px solid ${palette.border}`,
@@ -550,14 +529,8 @@ const RulesScene = ({durationInFrames}) => {
                     opacity: rise
                   }}
                 >
-                  <div style={{display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8}}>
-                    <div style={{fontFamily: uiFont, color: palette.chart1, fontSize: 12, fontWeight: 600}}>{todo.ruleId}</div>
-                    <div style={{borderRadius: 999, padding: "2px 7px", border: `1px solid ${priorityColor}88`, color: priorityColor, fontFamily: uiFont, fontSize: 10, textTransform: "uppercase", fontWeight: 700, letterSpacing: 0.55}}>
-                      {todo.priority}
-                    </div>
-                  </div>
-                  <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 15, lineHeight: 1.32, marginTop: 3}}>{todo.task}</div>
-                  <div style={{fontFamily: uiFont, color: palette.subtleForeground, fontSize: 12, marginTop: 5, lineHeight: 1.24}}>{todo.doneWhen}</div>
+                  <div style={{fontFamily: uiFont, color: palette.chart1, fontSize: 13, fontWeight: 600}}>{item.area}</div>
+                  <div style={{fontFamily: uiFont, color: palette.mutedForeground, fontSize: 14, lineHeight: 1.32, marginTop: 3}}>{item.detail}</div>
                 </div>
               );
             })}
@@ -568,11 +541,15 @@ const RulesScene = ({durationInFrames}) => {
   );
 };
 
+/* ── Scene 4: Outro ──────────────────────────────────────────────────── */
+
 const OutroScene = ({durationInFrames}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const fade = sceneFade(frame, durationInFrames);
   const punch = spring({frame, fps, delay: 6, config: {damping: 130}});
+
+  const project = reportData.project;
 
   return (
     <AbsoluteFill style={{opacity: fade, padding: "80px 96px 102px", justifyContent: "center"}}>
@@ -588,16 +565,19 @@ const OutroScene = ({durationInFrames}) => {
         }}
       >
         <div>
-          <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 54, lineHeight: 1, letterSpacing: "-0.022em", fontWeight: 600}}>{scriptCopy.outroHeadline}</div>
-          <div style={{fontFamily: uiFont, color: palette.mutedForeground, fontSize: 22, lineHeight: 1.32, letterSpacing: "-0.012em", marginTop: 10}}>{scriptCopy.outroSubline}</div>
+          <div style={{fontFamily: uiFont, color: palette.foreground, fontSize: 54, lineHeight: 1, letterSpacing: "-0.022em", fontWeight: 600}}>{copy.outroHeadline}</div>
+          <div style={{fontFamily: uiFont, color: palette.mutedForeground, fontSize: 22, lineHeight: 1.32, letterSpacing: "-0.012em", marginTop: 10}}>{copy.outroSubline}</div>
+          <div style={{fontFamily: monoFont, color: palette.chart1, fontSize: 18, marginTop: 16, padding: "10px 14px", borderRadius: 10, background: "rgba(155,178,213,0.08)", border: `1px solid ${palette.border}`, display: "inline-block"}}>
+            bun run audit ./my-app
+          </div>
         </div>
 
         <div style={{display: "grid", gridTemplateColumns: "repeat(2, minmax(160px, 1fr))", gap: 8}}>
           {[
-            {label: "Broken", value: `${reportData.broken.summary.score}/100`, color: palette.error},
-            {label: "Healthy", value: `${reportData.baseline.summary.score}/100`, color: palette.success},
-            {label: "Errors", value: String(reportData.baseline.summary.errors), color: palette.chart1},
-            {label: "Warnings", value: String(reportData.baseline.summary.warnings), color: palette.chart4}
+            {label: "Score", value: `${project.score}/100`, color: palette.success},
+            {label: "Rules", value: String(reportData.totalRules), color: palette.chart1},
+            {label: "Positives", value: String(project.totals.positives), color: palette.chart2},
+            {label: "Frameworks", value: String(reportData.totalFrameworks), color: palette.chart4}
           ].map((item) => (
             <div key={item.label} style={{...glassCard, borderRadius: 12, padding: "9px 11px", background: "rgba(255,255,255,0.04)"}}>
               <div style={{fontFamily: uiFont, color: palette.subtleForeground, fontSize: 11, textTransform: "uppercase", letterSpacing: 1, fontWeight: 600}}>{item.label}</div>
@@ -610,6 +590,8 @@ const OutroScene = ({durationInFrames}) => {
   );
 };
 
+/* ── Composition ─────────────────────────────────────────────────────── */
+
 export const HigDoctorShowcase = () => {
   return (
     <AbsoluteFill style={{fontFamily: uiFont}}>
@@ -620,11 +602,11 @@ export const HigDoctorShowcase = () => {
       </Sequence>
 
       <Sequence from={154} durationInFrames={220}>
-        <SeverityScene durationInFrames={220} />
+        <CategoriesScene durationInFrames={220} />
       </Sequence>
 
       <Sequence from={346} durationInFrames={190}>
-        <RulesScene durationInFrames={190} />
+        <FrameworksScene durationInFrames={190} />
       </Sequence>
 
       <Sequence from={506} durationInFrames={124}>

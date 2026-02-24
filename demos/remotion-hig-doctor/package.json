@@ -3,8 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "ralph-loop": "node scripts/ralph-loop-apple-hig.mjs",
-    "generate-data": "npm run ralph-loop && node scripts/generate-data.mjs",
+    "generate-data": "node scripts/generate-data.mjs",
     "render": "npm run generate-data && remotion render src/index.jsx HigDoctorShowcase out/hig-doctor-showcase.mp4",
     "preview": "npm run generate-data && remotion studio src/index.jsx"
   },

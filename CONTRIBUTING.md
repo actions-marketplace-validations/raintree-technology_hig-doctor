@@ -75,7 +75,7 @@ skills/hig-your-topic/
 3. Make your changes
 4. Submit a pull request
 
-Before you open a PR, run:
+Before you open a PR, validate the skill structure:
 
 ```bash
 node packages/hig-doctor/src/cli.js . --verbose
@@ -85,6 +85,12 @@ Optional interactive review:
 
 ```bash
 node packages/hig-doctor/src/cli.js . --tui
+```
+
+You can also run the HIG audit on the website or any project to verify patterns:
+
+```bash
+cd packages/hig-doctor/src-termcast && bun install && bun run audit ../../..
 ```
 
 ## Skill Quality Checklist

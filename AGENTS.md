@@ -17,15 +17,27 @@ This repository contains **Agent Skills** following the [Agent Skills specificat
 ```
 apple-hig-skills/
 ├── .claude-plugin/
-│   └── marketplace.json   # Claude Code plugin marketplace manifest
+│   └── marketplace.json       # Claude Code plugin marketplace manifest
 ├── packages/
-│   └── hig-doctor/        # npm CLI for repository validation
-├── skills/                # Agent Skills (14 skills)
+│   └── hig-doctor/
+│       ├── src/               # Skill validator (Node.js, npm)
+│       └── src-termcast/      # HIG audit tool (TypeScript, Bun)
+│           └── src/
+│               ├── cli.ts     # CLI entry point
+│               ├── audit.ts   # Orchestrator
+│               ├── scanner.ts # Project file walker + framework detection
+│               ├── patterns.ts # 349 regex rules across 12 frameworks
+│               ├── categorizer.ts # Maps patterns to HIG categories
+│               └── audit-generator.ts # Markdown report builder
+├── demos/
+│   └── remotion-hig-doctor/   # Remotion video demo of audit output
+├── skills/                    # Agent Skills (14 skills)
 │   └── skill-name/
-│       ├── SKILL.md       # Required skill file (<500 lines)
-│       └── references/    # HIG content files loaded on demand
-├── AGENTS.md              # This file
-├── CLAUDE.md -> AGENTS.md # Symlink for Claude Code
+│       ├── SKILL.md           # Required skill file (<500 lines)
+│       └── references/        # HIG content files loaded on demand
+├── website/                   # Next.js marketing site
+├── AGENTS.md                  # This file
+├── CLAUDE.md -> AGENTS.md     # Symlink for Claude Code
 ├── CONTRIBUTING.md
 ├── VERSIONS.md
 ├── LICENSE
@@ -34,6 +46,19 @@ apple-hig-skills/
 
 ## Build / Lint / Test Commands
 
+### HIG Audit (universal project scanner)
+- Install audit dependencies:
+  - `cd packages/hig-doctor/src-termcast && bun install`
+- Audit a project:
+  - `cd packages/hig-doctor/src-termcast && bun run audit <directory>`
+- Export full report:
+  - `cd packages/hig-doctor/src-termcast && bun run audit <directory> --export`
+- JSON output (for CI):
+  - `cd packages/hig-doctor/src-termcast && bun run audit <directory> --json`
+- Run audit tests:
+  - `cd packages/hig-doctor/src-termcast && bun test`
+
+### Skill Validator (repository lint)
 - Install doctor package dependencies (for local TUI mode):
   - `npm --prefix packages/hig-doctor install`
 - Validate all skills:
@@ -42,7 +67,7 @@ apple-hig-skills/
   - `node packages/hig-doctor/src/cli.js . --score`
 - Interactive TUI mode:
   - `node packages/hig-doctor/src/cli.js . --tui`
-- Run package tests:
+- Run validator tests:
   - `npm --prefix packages/hig-doctor test`
 
 ## Agent Skills Specification

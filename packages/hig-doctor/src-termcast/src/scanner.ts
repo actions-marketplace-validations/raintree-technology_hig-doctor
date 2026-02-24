@@ -8,7 +8,7 @@ export interface ScannedFile {
   content: string;
 }
 
-export type Framework = "swiftui" | "uikit" | "react" | "nextjs" | "react-native" | "flutter" | "html" | "unknown";
+export type Framework = "swiftui" | "uikit" | "react" | "nextjs" | "react-native" | "vue" | "nuxt" | "svelte" | "sveltekit" | "angular" | "flutter" | "compose" | "android" | "html" | "unknown";
 
 export interface ScanResult {
   directory: string;
@@ -50,10 +50,14 @@ const MARKUP_EXTENSIONS = new Set([
 const CONFIG_FILES = new Set([
   "tailwind.config.ts", "tailwind.config.js", "tailwind.config.mjs",
   "next.config.ts", "next.config.js", "next.config.mjs",
+  "nuxt.config.ts", "nuxt.config.js",
+  "svelte.config.js", "svelte.config.ts",
+  "angular.json",
   "package.json", "tsconfig.json",
   "Info.plist", "Package.swift", "pubspec.yaml",
   "app.json", "expo.json", "eas.json",
   "components.json",
+  "build.gradle", "build.gradle.kts", "AndroidManifest.xml",
 ]);
 
 async function walkDir(dir: string, rootDir: string, result: ScanResult): Promise<void> {
@@ -73,6 +77,8 @@ async function walkDir(dir: string, rootDir: string, result: ScanResult): Promis
       await walkDir(fullPath, rootDir, result);
     } else if (entry.isFile()) {
       const ext = extname(entry.name);
+      // Skip test/spec files — they contain example code that triggers false positives
+      if (/\.(test|spec)\.[^.]+$/.test(entry.name)) continue;
       const isConfig = CONFIG_FILES.has(entry.name);
 
       // Config files are always collected (and may also be code)
@@ -137,9 +143,44 @@ function detectFrameworks(result: ScanResult): Framework[] {
     }
   }
 
+  // Vue / Nuxt
+  if (hasExt(".vue")) {
+    if (hasConfig("nuxt.config.ts") || hasConfig("nuxt.config.js")) {
+      frameworks.push("nuxt");
+    } else {
+      frameworks.push("vue");
+    }
+  }
+
+  // Svelte / SvelteKit
+  if (hasExt(".svelte")) {
+    if (hasConfig("svelte.config.js") || hasConfig("svelte.config.ts")) {
+      frameworks.push("sveltekit");
+    } else {
+      frameworks.push("svelte");
+    }
+  }
+
+  // Angular
+  if (hasConfig("angular.json") || configContains("package.json", "\"@angular/core\"")) {
+    frameworks.push("angular");
+  }
+
   // Flutter
   if (hasExt(".dart") || hasConfig("pubspec.yaml")) {
     frameworks.push("flutter");
+  }
+
+  // Kotlin / Jetpack Compose / Android
+  if (hasExt(".kt")) {
+    const hasCompose = result.codeFiles.some(f => f.content.includes("androidx.compose"));
+    if (hasCompose) {
+      frameworks.push("compose");
+    } else {
+      frameworks.push("android");
+    }
+  } else if (result.markupFiles.some(f => f.relativePath.endsWith(".xml") && f.content.includes("android:"))) {
+    frameworks.push("android");
   }
 
   // Plain HTML
